@@ -7,6 +7,7 @@ interface PropsTypes {
 
 export default class RouterView extends Component<PropsTypes> {
     render(){
+        // console.log(this.props)
         let routes=this.props.routes;
         return (
             <Switch>
@@ -17,7 +18,7 @@ export default class RouterView extends Component<PropsTypes> {
                         }else{
                             return <Route path={item.path} key={index} render={(props)=>{
                                 if(item.children){
-                                    return <item.component routes={item.children} {...props}></item.component>
+                                    return <item.component routes={item.children} {...props} />
                                 }
                                 return <item.component {...props}/>
                             }}></Route>
