@@ -36,7 +36,7 @@ class Homeview extends Component<RouteComponentProps&Propsdata>{
     }
 }
 const a=(state:any)=>{
-    console.log(state)
+    // console.log(state)
     return {
         datalist:state.listadd
     }

@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import {withRouter,RouteComponentProps} from 'react-router-dom';
 import {connect} from 'react-redux'
+import ComBottom from '../component/bottomview'
 import '../style/listen.css'
 // import request from '../utils/request'
 interface Propsdata{
@@ -10,7 +11,7 @@ interface Propsdata{
 }
 class Listen extends Component<RouteComponentProps&Propsdata>{
     state={
-       
+       id:{}
     }
     render(){
         return(
@@ -25,19 +26,26 @@ class Listen extends Component<RouteComponentProps&Propsdata>{
                 <div className='content'>
                     {
                         this.props.listdatas.map((item,index)=>{
-                            return <div className='dl' key={index}>
+                            return <div className='dl' key={index} onClick={()=>{
+                                console.log(this)
+                                this.setState({
+                                    id:item
+                                })
+                            }}>
                                     <p>{item.name}</p>
                                     <p>{item.trade}<span>{item.pricechange}%</span></p>
                             </div>
                         })
                     }
                 </div>
+                <ComBottom idsymbol={this.state.id}/>
             </div>
         )
     }
+    
 }
 const mapStateToProps=(state:any)=>{
-    console.log(state)
+    // console.log(state)
     return {
         listdatas:state.datalists
     }

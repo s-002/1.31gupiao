@@ -2,13 +2,26 @@ import React,{Component} from 'react'
 import {withRouter,RouteComponentProps} from 'react-router-dom'
 import {connect} from 'react-redux'
 interface Propsdata{
-    ipt:any,
     listdata:Array<any>,
-    addlist:Function
+    addlist:Function,
+    sreach:Function,
+    
 }
 class Adddata extends Component<RouteComponentProps&Propsdata>{
     state={
-        ipt:''
+        ipt:'',
+        newlist:[{
+            symbol:'',
+            name:''
+        }]
+    }
+    sreach(){
+        let {ipt}=this.state
+        this.setState({
+            newlist:this.props.listdata.filter((item)=>{
+                return item.name.includes(ipt)
+            })
+        })
     }
     render(){
         return (
@@ -16,9 +29,9 @@ class Adddata extends Component<RouteComponentProps&Propsdata>{
                 <div style={{position:'sticky',top:0,left:0,background:'#fff'}}>
                     搜索添加页 
                     <br/>
-                    <input type="text" placeholder='输入关键字' ref='ipt'/>
+                    <input type="text" placeholder='输入关键字' value={this.state.ipt} onChange={(e)=>{this.setState({ipt:e.target.value})}}/>
                     <button onClick={()=>{
-                        console.log(this)
+                        this.sreach()
                     }}>搜索</button>
                     <span onClick={()=>{
                         this.props.history.goBack()
@@ -26,7 +39,7 @@ class Adddata extends Component<RouteComponentProps&Propsdata>{
                 </div>
                 <div className=''>
                     {
-                        this.props.listdata.map((item,index)=>{
+                        this.state.newlist.map((item,index)=>{
                             return <div className='con' key={index} onClick={()=>{
                                 this.props.addlist(item)
                                 this.props.history.goBack()

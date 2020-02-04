@@ -41,7 +41,7 @@ class Setting extends Component<RouteComponentProps&Propsdata>{
     }
 }
 const a=(state:any)=>{
-    console.log(state)
+    // console.log(state)
     return {
         listdatas:state.datalists
     }
