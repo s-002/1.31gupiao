@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+          padding: 0;
+          margin: 0;
+        }
+    
+        #box {
+          width: 470px;
+          height: 150px;
+          overflow: hidden;
+          margin: 100px auto;
+          position: absolute;
+          left: 25%;
+        }
+        .list {
+          width: 470px;
+          position: absolute;
+          height: 750px;
+        }
+    
+        .list li {
+          width: 470px;
+          height: 150px;
+          list-style: none;
+        }
+        .list li img {
+          width: 470px;
+          height: 150px;
+        }
+    
+      </style>
+</head>
+<body>
+<div id="box">
+    <ul class="list">
+        <li><img src="./img/1.jpg" alt=""></li>
+        <li><img src="./img/2.jpg" alt=""></li>
+        <li><img src="./img/3.jpg" alt=""></li>
+        <li><img src="./img/4.jpg" alt=""></li>
+        <li><img src="./img/5.jpg" alt=""></li>
+    </ul>
+</div>
+<script src="js/move.js"></script>
+<script>
+    let oList=document.getElementsByClassName('list')[0]
+    
+    let now=0
+    setTimeout(() => {
+        if(now>4){
+            now=0
+        }
+        startMove(oList,{top:-150*now})
+        now++
+    }, 1000);
+
+</script>
+</body>
+</html>
